@@ -32,6 +32,7 @@ def main():
     dispatcher.add_handler(CommandHandler("calorie",calorie_command))
     dispatcher.add_handler(CommandHandler("dietary",dietary))
     dispatcher.add_handler(CommandHandler("SearchGym",gym))
+    dispatcher.add_handler(CommandHandler("healthmenu",menu))
 
     # To start the bot:
     updater.start_polling()
@@ -44,6 +45,16 @@ def echo(update, context):
     logging.info("context: " + str(context))
     context.bot.send_message(chat_id=update.effective_chat.id, text= reply_message)
 
+def menu(update: Update, context: CallbackContext) -> None:
+    """Send a message when the command /menu is issued."""
+    try:
+        global redis1
+        logging.info(context.args[0])
+        msg = context.args[0]
+        update.message.reply_text('https://www.takeaway.com/bg-en/menu/fitness-menu  for ' + msg)
+    except (IndexError, ValueError):
+        update.message.reply_text('Usage: /menu <keyword>')
+
 def calorie_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /Calorie is issued."""
     update.message.reply_text('Calorie Caculator: https://www.calculator.net/calorie-calculator.html')
@@ -52,8 +63,6 @@ def gym(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /gym is issued."""
     update.message.reply_text('Where is gym, just follow this link: https://www.google.com/maps/search/gym/')
 
-# Define a few command handlers. These usually take the two arguments update and
-# context. Error handlers also receive the raised TelegramError object in error.
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
     update.message.reply_text('Helping you helping you.')
@@ -95,7 +104,7 @@ def dietary(update: Update, context: CallbackContext) -> None:
             msg = "Good dietary" 
         update.message.reply_text(msg)
     except (IndexError, ValueError):
-        update.message.reply_text('Usage: /Today_dietary <number of food>')
+        update.message.reply_text('Usage: /dietary <number of food>')
 
 
 if __name__ == '__main__':
