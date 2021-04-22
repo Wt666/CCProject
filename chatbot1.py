@@ -31,6 +31,7 @@ def main():
     dispatcher.add_handler(CommandHandler("hello", hello))
     dispatcher.add_handler(CommandHandler("calorie",calorie_command))
     dispatcher.add_handler(CommandHandler("dietary",dietary))
+    dispatcher.add_handler(CommandHandler("SearchGym",gym))
 
     # To start the bot:
     updater.start_polling()
@@ -47,6 +48,9 @@ def calorie_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /Calorie is issued."""
     update.message.reply_text('Calorie Caculator: https://www.calculator.net/calorie-calculator.html')
 
+def gym(update: Update, context: CallbackContext) -> None:
+    """Send a message when the command /gym is issued."""
+    update.message.reply_text('Where is gym, just follow this link: https://www.google.com/maps/search/gym/')
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
