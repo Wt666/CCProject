@@ -94,8 +94,8 @@ def dietary(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /dietary is issued."""
     try:
         global redis1
-        logging.info(int())
-        msg = int()
+        logging.info(context.args[0])
+        msg = int(context.args[0])
         if msg > 100:
             msg = "Bad dietary"
         elif msg == 100:
