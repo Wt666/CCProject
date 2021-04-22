@@ -96,15 +96,17 @@ def dietary(update: Update, context: CallbackContext) -> None:
         global redis1
         logging.info(context.args[0])
         msg = int(context.args[0])
-        if msg > 100:
+        if msg > 2000:
             msg = "Bad dietary"
-        elif msg == 100:
-            msg = "Just so so"
+        elif msg <1800:
+            msg = "Bad dietary"
+        elif msg == 2000:
+            msg = "Perfect dietary"
         else: 
             msg = "Good dietary" 
         update.message.reply_text(msg)
     except (IndexError, ValueError):
-        update.message.reply_text('Usage: /dietary <number of food>')
+        update.message.reply_text('Usage: /dietary <number of Today calorie intake>')
 
 
 if __name__ == '__main__':
