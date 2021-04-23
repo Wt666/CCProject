@@ -2,17 +2,17 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 # The messageHandler is used for all message updates
-#import configparser
+import configparser
 import logging
 import redis
-import os
+#import os
 
 global redis1
 
 def main():
     # Load your token and create an Updater for your Bot
-    #config = configparser.ConfigParser()
-    #config.read('config.ini')
+    config = configparser.ConfigParser()
+    config.read('config.ini')
     updater = Updater(token=(config['TELEGRAM']['ACCESS_TOKEN']), use_context=True)
     dispatcher = updater.dispatcher
     # You can set this logging module, so you will know when and why things do not work as expected
