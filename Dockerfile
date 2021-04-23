@@ -7,7 +7,6 @@ ENV REDISPORT 14699
 
 COPY ./chatbot1.py /
 COPY ./requirements.txt /
-COPY ./config.ini /
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
